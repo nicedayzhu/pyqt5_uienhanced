@@ -3,18 +3,20 @@
 # @Time    : 2019/4/26 19:55
 # @Author  : SeniorZhu1994
 # @Email   : SeniorZhu1994@foxmail.com
-# @Site    : 
+# @Site    :
 # @File    : call_record.py
 # @Software: PyCharm
 
 import sys
 from PyQt5 import QtCore
-from PyQt5.QtWidgets import QApplication,  QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QCursor, QPalette, QColor
 import qtawesome
 
 from record import Ui_MainWindow
+
+
 class MyMainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         # Python3中的继承只用一个super()就可以了，继承后初始化父类的属性
@@ -38,18 +40,19 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         self.label_2.setGeometry(QtCore.QRect(80, 130, 351, 91))
 
         # 设置窗口透明度，隐藏原始边框
-        self.setWindowOpacity(0.9) # 设置窗口透明度
-        #Ui_MainWindow3.setAttribute(QtCore.Qt.WA_TranslucentBackground) # 设置窗口背景透明
-        self.setWindowFlag(QtCore.Qt.FramelessWindowHint) # 隐藏边框
+        self.setWindowOpacity(0.9)  # 设置窗口透明度
+        # Ui_MainWindow3.setAttribute(QtCore.Qt.WA_TranslucentBackground) #
+        # 设置窗口背景透明
+        self.setWindowFlag(QtCore.Qt.FramelessWindowHint)  # 隐藏边框
         pe = QPalette()
         self.setAutoFillBackground(True)
-        pe.setColor(QPalette.Window,Qt.lightGray)  #设置背景色
+        pe.setColor(QPalette.Window, Qt.lightGray)  # 设置背景色
 
         # 设置标题和图标
         self.setPalette(pe)
         self.setWindowTitle("语音识别")
         spin_icon = qtawesome.icon('fa5s.microphone-alt', color='black')
-        #self.pushButton.setIcon(spin_icon)#设置图标
+        # self.pushButton.setIcon(spin_icon)#设置图标
         self.setWindowIcon(spin_icon)
 
         # 美化左上角的三个按钮。美化的效果就是圆形，红
@@ -64,7 +67,8 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         QPushButton:hover{background:green;}''')
 
         # 美化中间靠上的label
-        self.label.setStyleSheet('''QLabel{color:white;font-size:40px;font-family:Roman times;}''')
+        self.label.setStyleSheet(
+            '''QLabel{color:white;font-size:40px;font-family:Roman times;}''')
         # 美化中间的label
         self.label_2.setStyleSheet('''QLabel{color:darkGray;background:white;border:2px solid #F3F3F5;border-radius:45px;
                         font-size:14pt; font-weight:400;font-family: Roman times;} ''')
@@ -76,8 +80,8 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 
         # 最下面的按钮美化
         spin_icon = qtawesome.icon('fa5s.microphone-alt', color='white')
-        self.Btn_R.setIcon(spin_icon)#设置图标
-        self.Btn_R.setIconSize(QtCore.QSize(50,50))
+        self.Btn_R.setIcon(spin_icon)  # 设置图标
+        self.Btn_R.setIconSize(QtCore.QSize(50, 50))
         self.Btn_R.setStyleSheet('''QPushButton{border:none;}
         QPushButton:hover{color:white;
                     border:2px solid #F3F3F5;
@@ -118,7 +122,8 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         self.m_drag = False
         self.setCursor(QCursor(Qt.ArrowCursor))
 
-if __name__ =="__main__":
+
+if __name__ == "__main__":
     app = QApplication(sys.argv)
     myWin = MyMainWindow()
     myWin.show()
