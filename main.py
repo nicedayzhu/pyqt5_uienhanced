@@ -20,17 +20,19 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         # Python3中的继承只用一个super()就可以了，继承后初始化父类的属性
         super().__init__(parent)
         self.setupUi(self)
-        self.initUI()
+        self.ui_custom()
+        self.init()
 
-    def initUI(self):
-        self.m_drag = False
-        self.Btn1.clicked.connect(self.close)
-        self.Btn2.clicked.connect(self.showMinimized)
-        self.Btn3.clicked.connect(self.showMaximized)
+    def ui_custom(self):
+        self.Btn_Close.setGeometry(QtCore.QRect(30, 20, 30, 30))
+        self.Btn_Close.setToolTip("关闭窗口")
 
-        self.Btn1.setGeometry(QtCore.QRect(30, 20, 30, 30))
-        self.Btn2.setGeometry(QtCore.QRect(80, 20, 30, 30))
-        self.Btn3.setGeometry(QtCore.QRect(130, 20, 30, 30))
+        self.Btn_Min.setGeometry(QtCore.QRect(80, 20, 30, 30))
+        self.Btn_Min.setToolTip("最小化")
+
+        self.Btn_Max_Nor.setGeometry(QtCore.QRect(130, 20, 30, 30))
+        self.Btn_Max_Nor.setToolTip("最大化")
+
         self.Btn_R.setGeometry(QtCore.QRect(190, 250, 101, 71))
         self.label.setGeometry(QtCore.QRect(80, 60, 351, 70))
         self.label_2.setGeometry(QtCore.QRect(80, 130, 351, 91))
@@ -54,11 +56,11 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         # 黄
         # 绿色
         # 悬停时颜色会加深。
-        self.Btn1.setStyleSheet('''QPushButton{background:#F76677;border-radius:15px;}
+        self.Btn_Close.setStyleSheet('''QPushButton{background:#F76677;border-radius:15px;}
         QPushButton:hover{background:red;}''')
-        self.Btn2.setStyleSheet('''QPushButton{background:#F7D674;border-radius:15px;}
+        self.Btn_Min.setStyleSheet('''QPushButton{background:#F7D674;border-radius:15px;}
         QPushButton:hover{background:yellow;}''')
-        self.Btn3.setStyleSheet('''QPushButton{background:#6DDF6D;border-radius:15px;}
+        self.Btn_Max_Nor.setStyleSheet('''QPushButton{background:#6DDF6D;border-radius:15px;}
         QPushButton:hover{background:green;}''')
 
         # 美化中间靠上的label
@@ -81,6 +83,23 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
                     border:2px solid #F3F3F5;
                     border-radius:35px;
                     background:darkGray;}''')
+
+    def init(self):
+        self.m_drag = False
+        self.max_flag = True
+        self.Btn_Close.clicked.connect(self.close)
+        self.Btn_Min.clicked.connect(self.showMinimized)
+        self.Btn_Max_Nor.clicked.connect(self.Max_or_Nor)
+
+    def Max_or_Nor(self):
+        if self.max_flag == True:
+            self.showMaximized()
+            self.max_flag = False
+            self.Btn_Max_Nor.setToolTip("恢复")
+        else:
+            self.showNormal()
+            self.max_flag = True
+            self.Btn_Max_Nor.setToolTip("最大化")
 
     # 重写三个方法使我们的Example窗口支持拖动,上面参数window就是拖动对象
     def mousePressEvent(self, event):

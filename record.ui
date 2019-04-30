@@ -54,7 +54,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Btn1">
+   <widget class="QPushButton" name="Btn_Close">
     <property name="geometry">
      <rect>
       <x>22</x>
@@ -67,7 +67,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Btn2">
+   <widget class="QPushButton" name="Btn_Min">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -80,7 +80,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="Btn3">
+   <widget class="QPushButton" name="Btn_Max_Nor">
     <property name="geometry">
      <rect>
       <x>118</x>
